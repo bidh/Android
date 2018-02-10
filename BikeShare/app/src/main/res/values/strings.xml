@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">BikeShare</string>
+    <string name="lastAdded">Last Added</string>
+    <string name="whatBike">What Bike</string>
+    <string name="where">Where</string>
+    <string name="addRide">Add Ride</string>
+</resources>
