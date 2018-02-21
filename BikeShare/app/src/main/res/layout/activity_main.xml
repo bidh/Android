@@ -6,59 +6,19 @@
     android:stretchColumns="*"
     android:background="#dcdcdc">
     <!-- Row 1 with single column -->
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-        <TextView
-            android:layout_weight="1"
-            android:textColor="#000000"
-            android:padding="20dip"
-            android:gravity="center"
-            android:text="@string/lastAdded"/>
-        <EditText
-            android:id="@+id/lastAdded"
-            android:layout_weight="1"
-            android:textColor="#000000"
-            android:padding="20dip"
-            android:gravity="center"/>
-    </TableRow>
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-        <TextView
-            android:layout_weight="1"
-            android:textColor="#000000"
-            android:padding="20dip"
-            android:gravity="center"
-            android:text="@string/whatBike"/>
-        <EditText
-            android:id="@+id/whatBike"
-            android:layout_weight="1"
-            android:textColor="#000000"
-            android:padding="20dip"
-            android:gravity="center"/>
-    </TableRow>
-    <TableRow
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent">
-    <TextView
-        android:layout_weight="1"
-        android:textColor="#000000"
-        android:padding="20dip"
-        android:gravity="center"
-        android:text="@string/where"/>
-    <EditText
-        android:id="@+id/where"
-        android:layout_weight="1"
-        android:textColor="#000000"
-        android:padding="20dip"
-        android:gravity="center"/>
-    </TableRow>
+
     <TableRow>
         <Button
             android:id="@+id/btnAdd"
             android:gravity="center"
             android:background="@color/colorAccent"
             android:text="Add Ride"/>
+    </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/btnEnd"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:text="End Ride"/>
     </TableRow>
 </TableLayout>
