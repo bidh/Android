@@ -21,4 +21,18 @@
             android:background="@color/colorAccent"
             android:text="End Ride"/>
     </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/btnList"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:text="View list"/>
+    </TableRow>
+    <TableRow>
+        <ListView
+            android:id="@+id/mainListView"
+            android:gravity="center"
+            android:background="@color/colorAccent"
+            android:text="End Ride"/>
+    </TableRow>
 </TableLayout>

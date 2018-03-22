@@ -23,7 +23,6 @@ public class startRideActivity extends AppCompatActivity{
         setContentView(R.layout.activity_start_ride);
 
         lastAdded = (EditText) findViewById(R.id.lastAdded);
-        updateUI();
         // Button
         addRide = (Button) findViewById(R.id.btnAdd);
         // Texts
@@ -39,10 +38,8 @@ public class startRideActivity extends AppCompatActivity{
                     // reset text fields
                     newWhat.setText("");
                     newWhere.setText("");
-                    updateUI();
                 }
             }
         });
     }
-    private void updateUI(){ lastAdded.setText(last.toString()); }
 }
