@@ -9,6 +9,7 @@ public class Ride {
     private String mStartRide;
     private String mEndRide;
 
+    public Ride(){ mBikeName= "";  mStartRide= "";   mEndRide= "";  }
     public Ride(String bikeName, String startRide, String endRide) {
         mBikeName = bikeName;
         mStartRide = startRide;

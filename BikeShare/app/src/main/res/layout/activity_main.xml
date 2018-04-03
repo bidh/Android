@@ -1,38 +1,46 @@
-<TableLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:shrinkColumns="*"
-    android:stretchColumns="*"
-    android:background="#dcdcdc">
-    <!-- Row 1 with single column -->
+    android:background="#767272"
+    android:padding="5dp"
+    android:orientation="vertical">
 
-    <TableRow>
-        <Button
-            android:id="@+id/btnAdd"
-            android:gravity="center"
-            android:background="@color/colorAccent"
-            android:text="Add Ride"/>
-    </TableRow>
-    <TableRow>
-        <Button
-            android:id="@+id/btnEnd"
-            android:gravity="center"
-            android:background="@color/colorAccent"
-            android:text="End Ride"/>
-    </TableRow>
-    <TableRow>
-        <Button
-            android:id="@+id/btnList"
-            android:gravity="center"
-            android:background="@color/colorAccent"
-            android:text="View list"/>
-    </TableRow>
-    <TableRow>
-        <ListView
-            android:id="@+id/mainListView"
-            android:gravity="center"
-            android:background="@color/colorAccent"
-            android:text="End Ride"/>
-    </TableRow>
-</TableLayout>
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:gravity="center"
+        android:background="@color/colorAccent"
+        android:text="Add Ride"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <Button
+        android:id="@+id/btnEnd"
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:gravity="center"
+        android:background="@color/colorAccent"
+        android:text="End Ride"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <Button
+        android:id="@+id/btnShow"
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:gravity="center"
+        android:background="@color/colorAccent"
+        android:text="Show Ride"/>
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
+</LinearLayout>
