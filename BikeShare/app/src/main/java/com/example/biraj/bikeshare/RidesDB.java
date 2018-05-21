@@ -65,9 +65,6 @@ public class RidesDB extends Observable{
         mlastRide.setStartRide(""); // indicates that no ride is ongoing
 
         // Add some rides for testing purposes
-        mallRides.add(new Ride("Peters bike", "ITU", "Fields"));
-        mallRides.add(new Ride("Peters bike", "Fields", "Kongens Nytorv"));
-        mallRides.add(new Ride("Jørgens bike", "Home", "ITU"));
         this.setChanged();
         notifyObservers();
     }

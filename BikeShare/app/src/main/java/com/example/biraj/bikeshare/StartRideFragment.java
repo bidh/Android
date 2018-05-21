@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.Calendar;
+
 /**
  * Created by biraj on 3/23/2018.
  */
@@ -26,14 +28,14 @@ public class StartRideFragment extends Fragment{
     }
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater. inflate(R.layout.activity_start_ride, container, false);
-        lastAdded= v.findViewById(R.id.lastAdded);
+        lastAdded= v.findViewById(R.id.last_ride);
 
         // Button
-        addRide= v.findViewById(R.id.btnAdd);
+        addRide= v.findViewById(R.id.add_button);
 
         // Texts
-        newWhat= v.findViewById(R.id.whatBike);
-        newWhere= v.findViewById(R.id.where);
+        newWhat= v.findViewById(R.id.what_text);
+        newWhere= v.findViewById(R.id.where_text);
 
         addRide.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +45,7 @@ public class StartRideFragment extends Fragment{
                     r.setBikeName(newWhat.getText().toString().trim());
                     r.setStartRide(newWhere.getText().toString().trim());
                     r.setEndRide(lastAdded.getText().toString().trim());
+                    r.setDate(Calendar.getInstance().getTime());
                     sRidesdb.addFullRide(r);
                     getActivity().recreate();    //BikeShareActivity restarted
                 }

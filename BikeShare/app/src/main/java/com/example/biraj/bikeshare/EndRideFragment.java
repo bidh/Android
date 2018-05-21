@@ -14,8 +14,7 @@ import android.widget.TextView;
  */
 
 public class EndRideFragment extends Fragment{
-    private Button addRide;
-    private TextView lastAdded;
+    private Button stopRide;
     private TextView newWhat, newWhere;
     private Ride last= new Ride("", "");
     private static RidesDB sRidesdb;
@@ -28,14 +27,12 @@ public class EndRideFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container ,Bundle savedInstanceState){
         View v= inflater. inflate(R.layout.activity_end_ride, container, false);
 
-        lastAdded= v.findViewById(R.id.lastAdded);
-        // Button
-        addRide = v.findViewById(R.id.btnAdd);
+        stopRide= v.findViewById(R.id.add_button);
         // Texts
-        newWhat= v.findViewById(R.id.whatBike);
-        newWhere=v.findViewById(R.id.where);
+        newWhat= v.findViewById(R.id.what_text);
+        newWhere=v.findViewById(R.id.where_text);
         // view products click event
-        addRide.setOnClickListener(new View.OnClickListener() {
+        stopRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if ( (newWhere.getText().length() > 0)) {

@@ -1,6 +1,7 @@
 package com.example.biraj.bikeshare;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -21,39 +22,61 @@ public class MainActivity extends FragmentActivity {
     private RidesDB sRidesDB;
     private List<Ride> ridelst;
     private RideArrayAdapter adapter;
-    FragmentManager fm= getSupportFragmentManager();
+    private FragmentManager fm= getSupportFragmentManager();
     private Boolean activeRide=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        Fragment fragment= fm.findFragmentById(R.id.fragmentContainer);
-
         btnAdd=(Button)findViewById(R.id.btnAdd);
         btnEnd=(Button)findViewById(R.id.btnEnd);
         btnShow=(Button)findViewById(R.id.btnShow);
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpFragment(new StartRideFragment(), R.id.fragmentContainer);
-            }
-        });
-        btnEnd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpFragment(new EndRideFragment(), R.id.fragmentContainer);
-            }
-        });
-        btnShow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setUpFragment(new ShowRideFragment(), R.id.fragmentContainer);
-            }
-        });
+
+        if(getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setUpFragment(new StartRideFragment(), R.id.fragment_button_container);
+                }
+            });
+            btnEnd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setUpFragment(new EndRideFragment(), R.id.fragment_button_container);
+                }
+            });
+            btnShow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+            setUpFragment(new ShowRideFragment(), R.id.fragmentContainer);
+        }
+        else{
+            btnAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setUpFragment(new StartRideFragment(), R.id.fragmentContainer);
+                }
+            });
+            btnEnd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setUpFragment(new EndRideFragment(), R.id.fragmentContainer);
+                }
+            });
+            setUpFragment(new ShowRideFragment(), R.id.fragmentContainer);
+            btnShow.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+        }
+
     }
     private void setUpFragment(Fragment newFragment, int res) {
         Fragment fragment= fm.findFragmentById(res);
