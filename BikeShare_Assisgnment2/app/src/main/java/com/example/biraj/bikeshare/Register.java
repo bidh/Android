@@ -56,4 +56,7 @@ public class Register {
     public byte[] getImage(){
         return mImage;
     }
+    public String toString(){
+        return this.mName;
+    }
 }

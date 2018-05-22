@@ -8,36 +8,60 @@ import java.util.UUID;
  */
 
 public class Ride {
-    private UUID mId;
-    private String mbikeName;
-    private String mstartRide;
-    private String mendRide;
-
-    public Ride(){ mbikeName= "";  mstartRide= "";   mendRide= "";  }
-    public Ride(String name, String start) { mbikeName= name; mstartRide= start; mId = UUID.randomUUID();}
-    public Ride(String name, String startRide, String endRide) {
-        mId = UUID.randomUUID();
-        mbikeName= name;
-        mstartRide= startRide;
-        mendRide= endRide;
+    public String getName() {
+        return name;
     }
-    public UUID getId() {
+
+    public void setName(String name) {
+        this.name = name;
+    }
+    private UUID mId;
+    private String name;
+    private String mStartLocation;
+    private String mStartDateTime;
+    private String mEndLocation;
+    private String mEndDateTime;
+
+    public Ride(){
+        this(UUID.randomUUID());;
+    }
+    public Ride(UUID id) {
+        mId = id;
+    }
+    public UUID getId(){
         return mId;
     }
-    public String getBikeName() {
-        return mbikeName;
+    public String getPrice() {
+        return price;
     }
-    public void setBikeName(String mbikeName) {
-        this.mbikeName = mbikeName;
+
+    public void setPrice(String price) {
+        this.price = price;
     }
-    public String getStartRide() {
-        return mstartRide;
+
+    private String price;
+
+    public String getStartDateTime() {
+        return mStartDateTime;
     }
-    public void setStartRide(String mstartRide) {
-        this.mstartRide = mstartRide;
+
+    public void setStartDateTime(String mStartDateTime) {
+        this.mStartDateTime = mStartDateTime;
     }
-    public String getEndRide() { return mendRide; }
-    public void setEndRide(String mendRide) { this.mendRide = mendRide; }
-    public String toString() { return mbikeName + " started: " + mstartRide + " ended: " + mendRide; }
+
+    public String getEndDateTime() {
+        return mEndDateTime;
+    }
+    public void setEndDateTime(String mEndDateTime) {
+        this.mEndDateTime = mEndDateTime;
+    }
+    public String getStartLocation() {
+        return mStartLocation;
+    }
+    public void setStartLocation(String mstartLocation) {
+        this.mStartLocation = mstartLocation;
+    }
+    public String getEndLocation() { return mEndLocation; }
+    public void setEndLocation(String mendLocation) { this.mEndLocation = mendLocation; }
 
 }

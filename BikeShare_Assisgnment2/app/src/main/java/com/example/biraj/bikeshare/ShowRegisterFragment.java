@@ -26,39 +26,6 @@ public class ShowRegisterFragment extends Fragment {
     private RecyclerView mRegisterRecyclerView;
     private RegisterAdapter mAdapter;
 
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.fragment_ride_list, menu);
-    }
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            /*case R.id.new_ride:
-                StartRideFragment startRideFragment=new StartRideFragment();
-                callFragment(startRideFragment);
-                return true;
-            case R.id.end_ride:
-                EndRideFragment endRideFragment=new EndRideFragment();
-                callFragment(endRideFragment);
-                return true;
-            case R.id.check_ride:
-                CheckFragment checkFragment=new CheckFragment();
-                callFragment(checkFragment);
-                return true;*/
-            case R.id.register_bike:
-                RegisterFragment registerFragment=new RegisterFragment();
-                callFragment(registerFragment);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-    private void callFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
-    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +43,6 @@ public class ShowRegisterFragment extends Fragment {
         updateUI();
 
         return view;
-    }
-    public void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, someFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
     private void updateUI() {
         RegisterLab registerLab = RegisterLab.get(getActivity());
@@ -128,25 +89,20 @@ public class ShowRegisterFragment extends Fragment {
             mBikePriceView.setText("Bike price per hour: "+mRegister.getPrice()+ " kr");
             mImageView.setImageBitmap(RegisterLab.ConvertByteArrayToBitmap(mRegister.getImage()));
         }
-
         @Override
         public void onClick(View view) {
         }
     }
     private class RegisterAdapter extends RecyclerView.Adapter<RegisterHolder> {
-
         private List<Register> mRegister;
-
         public RegisterAdapter(List<Register> register) {
             mRegister = register;
         }
-
         @Override
         public RegisterHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             return new RegisterHolder(layoutInflater, parent);
         }
-
         @Override
         public void onBindViewHolder(RegisterHolder holder, int position) {
             Register register= mRegister.get(position);

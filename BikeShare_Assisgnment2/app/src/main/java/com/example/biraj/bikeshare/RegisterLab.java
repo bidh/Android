@@ -7,13 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import com.example.biraj.bikeshare.database.RegisterBaseHelper;
+import com.example.biraj.bikeshare.database.DatabaseHelper;
 import com.example.biraj.bikeshare.database.RegisterCursorWrapper;
 import com.example.biraj.bikeshare.database.RegisterDbSchema;
 import com.example.biraj.bikeshare.database.RegisterDbSchema.RegisterTable;
 
 import java.io.ByteArrayOutputStream;
-import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -46,7 +45,7 @@ public class RegisterLab {
     }
     private RegisterLab(Context context) {
         mContext = context.getApplicationContext();
-        mDatabase = new RegisterBaseHelper(mContext)
+        mDatabase = new DatabaseHelper(mContext)
                 .getWritableDatabase();
 
     }
@@ -83,14 +82,14 @@ public class RegisterLab {
             cursor.close();
         }
     }
-    /*
+
     public void updateRegister(Register crime) {
         String uuidString = crime.getId().toString();
         ContentValues values = getContentValues(crime);
         mDatabase.update(RegisterTable.NAME, values,
                 UUID + " = ?",
                 new String[]{uuidString});
-    }*/
+    }
     private RegisterCursorWrapper queryRegisters(String whereClause, String[] whereArgs) {
         Cursor cursor = mDatabase.query(
                 RegisterTable.NAME,
