@@ -8,28 +8,34 @@
     <EditText
         android:id="@+id/bike_name"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:editable="false"/>
     <EditText
         android:id="@+id/start_location"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:editable="false"/>
     <EditText
         android:id="@+id/start_datetime"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:editable="false"/>
     <EditText
         android:id="@+id/end_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ending Location"/>
+        android:hint="Ending Location"
+        android:editable="false"/>
     <EditText
         android:id="@+id/end_datetime"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:editable="false"/>
     <EditText
         android:id="@+id/price"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:editable="false"/>
     <Button
         android:id="@+id/btn_end_location"
         android:layout_width="match_parent"

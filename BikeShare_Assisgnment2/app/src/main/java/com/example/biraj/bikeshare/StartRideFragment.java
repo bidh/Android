@@ -2,10 +2,13 @@ package com.example.biraj.bikeshare;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -24,6 +27,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+
+import static android.content.Context.LOCATION_SERVICE;
 
 /**
  * Created by biraj on 5/1/2018.
@@ -118,10 +123,11 @@ public class StartRideFragment extends Fragment {
         btnStartRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String sLocation=startLocation.getText().toString();
                 String text = spinner.getSelectedItem().toString();
                 ride.setId(UUID.randomUUID());
                 ride.setName(text);
-                ride.setStartLocation(startLocation.getText().toString());
+                ride.setStartLocation(sLocation);
                 RideLab.get(getActivity()).addRide(ride);
                 CheckFragment nextFrag= new CheckFragment();
                 getActivity().getSupportFragmentManager().beginTransaction()

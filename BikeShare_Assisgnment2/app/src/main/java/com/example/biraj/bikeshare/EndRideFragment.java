@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,10 +78,35 @@ public class EndRideFragment extends Fragment {
         RideLab rideLab= RideLab.get(getActivity());
         ride= rideLab.getRide(java.util.UUID.fromString(UUID));
 
+        String startDateString=ride.getStartDateTime();
+        Date startDate = null,endDate=null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            startDate=dateFormat.parse(startDateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            endDate=dateFormat.parse(getDateTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long diff=endDate.getTime()-startDate.getTime();
+        long seconds=diff/1000;
+        long minutes=seconds/60;
+        long hours=minutes/60;
+        long price= (long) 0.0;
+        if(hours==0){
+            price=20;
+        }else{
+            price=hours*20;
+        }
+
         bikeName.setText(ride.getName());
         startLocation.setText(ride.getStartLocation());
         startDateTime.setText(ride.getStartDateTime());
         endDatetime.setText(getDateTime());
+        Price.setText(String.valueOf((int) price));
 
         btnGetLocation.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -127,8 +153,12 @@ public class EndRideFragment extends Fragment {
         btnEndRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String eLocation=endLocation.getText().toString();
+                /*if(eLocation==""){
+                    Toast.makeText(getActivity(),"Ending location cannot be empty",Toast.LENGTH_SHORT).show();
+                }*/
                 ride.setEndDateTime(endDatetime.getText().toString());
-                ride.setEndLocation(endLocation.getText().toString());
+                ride.setEndLocation(eLocation);
                 ride.setPrice(Price.getText().toString());
                 RideLab.get(getActivity()).updateRide(ride);
                 CheckFragment nextFrag= new CheckFragment();

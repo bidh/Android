@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
@@ -71,8 +72,11 @@ public class RegisterFragment extends Fragment {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                register.setName(txtBikeName.getText().toString());
-                register.setType(txtBikeType.getText().toString());
+                String bikeName=txtBikeName.getText().toString();
+                String bikeType=txtBikeType.getText().toString();
+
+                register.setName(bikeName);
+                register.setType(bikeType);
                 register.setPrice(txtBikePrice.getText().toString());
                 register.setImage(image);
                 RegisterLab.get(getActivity()).addRegister(register);

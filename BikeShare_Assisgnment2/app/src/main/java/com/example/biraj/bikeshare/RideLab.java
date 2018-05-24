@@ -79,7 +79,7 @@ public class RideLab {
     }
     public void updateRide(Ride ride) {
         String uuidString = ride.getId().toString();
-        ContentValues values = getContentValues(ride);
+        ContentValues values = getContentValuesUpdate(ride);
         mDatabase.update(RidesDbSchema.RideTable.Name, values,
                 UUID + " = ?",
                 new String[]{uuidString});
@@ -97,6 +97,14 @@ public class RideLab {
         return new RideCursorWrapper(cursor);
     }
     private static ContentValues getContentValues(Ride ride) {
+        ContentValues values = new ContentValues();
+        values.put(UUID, ride.getId().toString());
+        values.put(BIKENAME,ride.getName());
+        values.put(STARTLOCATION, ride.getStartLocation());
+        values.put(STARTDATETIME, getDateTime());
+        return values;
+    }
+    private static ContentValues getContentValuesUpdate(Ride ride) {
         ContentValues values = new ContentValues();
         values.put(UUID, ride.getId().toString());
         values.put(BIKENAME,ride.getName());

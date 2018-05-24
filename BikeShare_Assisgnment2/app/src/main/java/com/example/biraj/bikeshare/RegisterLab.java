@@ -108,7 +108,7 @@ public class RegisterLab {
         values.put(UUID,register.getId().toString());
         values.put(NAME, register.getName());
         values.put(TYPE, register.getType());
-        values.put(PRICE,register.getPrice());
+        values.put(PRICE, 20);
         values.put(DATE, getDateTime());
         values.put(IMAGE, register.getImage());
         return values;

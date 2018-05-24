@@ -51,7 +51,8 @@
         android:id="@+id/bike_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Bike price per hour"/>
+        android:editable="false"
+        android:text="20"/>
 
     <Button
         android:id="@+id/btn_register_bike"

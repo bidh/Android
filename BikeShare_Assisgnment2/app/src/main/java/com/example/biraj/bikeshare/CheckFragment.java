@@ -53,14 +53,15 @@ public class CheckFragment extends Fragment {
         private TextView mEndView;
         private TextView mEndDateView;
         private TextView mPriceView;
-        private TextView mBikeUUIDView;
+        private TextView mBikeTypeView;
 
         public RideHolder(LayoutInflater inflater, ViewGroup parent) {
-            super(inflater.inflate(R.layout.testinglistitemride, parent, false));
+            super(inflater.inflate(R.layout.list_item_ride, parent, false));
             itemView.setOnClickListener(this);
 
-            mBikeUUIDView = (TextView) itemView.findViewById(R.id.bikeUUID);
+            //mBikeUUIDView = (TextView) itemView.findViewById(R.id.bikeUUID);
             mBikeNameView = (TextView) itemView.findViewById(R.id.bike_name_list_ride);
+            mBikeTypeView = (TextView) itemView.findViewById(R.id.bike_type);
             mStartView = (TextView) itemView.findViewById(R.id.bike_start_list_ride);
             mStartDateView= (TextView) itemView.findViewById(R.id.bike_start_date_list_ride);
             mEndView = (TextView) itemView.findViewById(R.id.bike_end_list_ride);
@@ -71,13 +72,13 @@ public class CheckFragment extends Fragment {
 
         public void bind(Ride ride) {
             mRide = ride;
-            mBikeUUIDView.setText("Ride Id : "+mRide.getId().toString());
-            mBikeNameView.setText("Bike name : " + mRide.getName());
-            mStartView.setText("Start Location : " + mRide.getStartLocation());
-            mStartDateView.setText("Start Datetime : " + mRide.getStartDateTime());
-            mEndView.setText("End Location : " + mRide.getEndLocation());
-            mEndDateView.setText("End Datetime : " + mRide.getEndDateTime());
-            mPriceView.setText("Price : " + mRide.getPrice());
+            //mBikeUUIDView.setText("Ride Id : "+mRide.getId().toString());
+            mBikeNameView.setText(mRide.getName());
+            mStartView.setText( mRide.getStartLocation());
+            mStartDateView.setText( mRide.getStartDateTime());
+            mEndView.setText(mRide.getEndLocation());
+            mEndDateView.setText( mRide.getEndDateTime());
+            mPriceView.setText(mRide.getPrice()+" kr ");
         }
         @Override
         public void onClick(View view) {
