@@ -8,47 +8,32 @@ import java.util.UUID;
  */
 
 public class Ride {
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
     private UUID mId;
     private String name;
     private String mStartLocation;
     private String mStartDateTime;
     private String mEndLocation;
     private String mEndDateTime;
+    private String price;
 
-    public Ride(){
-        this(UUID.randomUUID());;
-    }
-    public Ride(UUID id) {
-        mId = id;
-    }
-    public UUID getId(){
-        return mId;
+    public void setId(UUID id){mId=id;}
+    public UUID getId(){return mId;}
+    public String getName() {return name;}
+    public void setName(String name) {
+        this.name = name;
     }
     public String getPrice() {
         return price;
     }
-
     public void setPrice(String price) {
         this.price = price;
     }
-
-    private String price;
-
     public String getStartDateTime() {
         return mStartDateTime;
     }
-
     public void setStartDateTime(String mStartDateTime) {
         this.mStartDateTime = mStartDateTime;
     }
-
     public String getEndDateTime() {
         return mEndDateTime;
     }

@@ -5,17 +5,31 @@
     android:layout_margin="16dp"
     android:orientation="vertical">
 
-    <Spinner
-        android:id="@+id/bikeIdSpinnerEndRide"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Select bike"/>
     <EditText
-        android:id="@+id/end_ride"
+        android:id="@+id/bike_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/start_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/start_datetime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/end_location"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Ending Location"/>
-
+    <EditText
+        android:id="@+id/end_datetime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/price"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
     <Button
         android:id="@+id/btn_end_location"
         android:layout_width="match_parent"

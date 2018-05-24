@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.CursorWrapper;
 import com.example.biraj.bikeshare.Ride;
 
+import java.util.UUID;
+
 /**
  * Created by biraj on 5/22/2018.
  */
@@ -13,6 +15,7 @@ public class RideCursorWrapper extends CursorWrapper {
         super(cursor);
     }
     public Ride getRide() {
+        String rideId=getString(getColumnIndex(RidesDbSchema.RideTable.Cols.UUID));
         String bikeName=getString(getColumnIndex(RidesDbSchema.RideTable.Cols.BIKENAME));
         String startLocation= getString(getColumnIndex(RidesDbSchema.RideTable.Cols.STARTLOCATION));
         String startDateTime= getString(getColumnIndex(RidesDbSchema.RideTable.Cols.STARTDATETIME));
@@ -22,6 +25,7 @@ public class RideCursorWrapper extends CursorWrapper {
 
 
         Ride ride= new Ride();
+        ride.setId(UUID.fromString(rideId));
         ride.setName(bikeName);
         ride.setStartLocation(startLocation);
         ride.setStartDateTime(startDateTime);

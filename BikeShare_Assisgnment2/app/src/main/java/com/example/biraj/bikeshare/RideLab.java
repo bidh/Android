@@ -37,7 +37,6 @@ public class RideLab {
         if (sRideLab == null) {
             sRideLab = new RideLab(context);
         }
-
         return sRideLab;
     }
     private RideLab(Context context) {
@@ -65,7 +64,7 @@ public class RideLab {
     }
     public Ride getRide(UUID id) {
         RideCursorWrapper cursor = queryRides(
-                RidesDbSchema.RideTable.Cols.BIKENAME + " = ?",
+                RidesDbSchema.RideTable.Cols.UUID + " = ?",
                 new String[]{id.toString()}
         );
         try {
@@ -99,7 +98,7 @@ public class RideLab {
     }
     private static ContentValues getContentValues(Ride ride) {
         ContentValues values = new ContentValues();
-        values.put(UUID,ride.getId().toString());
+        values.put(UUID, ride.getId().toString());
         values.put(BIKENAME,ride.getName());
         values.put(STARTLOCATION, ride.getStartLocation());
         values.put(STARTDATETIME, getDateTime());

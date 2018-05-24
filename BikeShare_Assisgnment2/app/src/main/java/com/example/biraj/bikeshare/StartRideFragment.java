@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by biraj on 5/1/2018.
@@ -118,11 +119,15 @@ public class StartRideFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 String text = spinner.getSelectedItem().toString();
+                ride.setId(UUID.randomUUID());
                 ride.setName(text);
                 ride.setStartLocation(startLocation.getText().toString());
                 RideLab.get(getActivity()).addRide(ride);
-                //getActivity().recreate();
-                Toast.makeText(getActivity().getApplicationContext(),"ride started successfully",Toast.LENGTH_LONG).show();
+                CheckFragment nextFrag= new CheckFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, nextFrag)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         return v;

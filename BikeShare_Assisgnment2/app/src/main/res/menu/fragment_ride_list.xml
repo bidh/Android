@@ -8,14 +8,14 @@
         android:title="New"
         app:showAsAction="ifRoom|withText"/>
     <item
-        android:id="@+id/end_ride"
-        android:icon="@drawable/ic_menu_end"
+        android:id="@+id/check_ride"
+        android:icon="@drawable/ic_menu_check"
         android:title="End"
         app:showAsAction="ifRoom|withText"/>
     <item
-        android:id="@+id/check_ride"
-        android:icon="@drawable/ic_menu_check"
-        android:title="Check"
+        android:id="@+id/ViewRegisteredBike"
+        android:icon="@drawable/ic_view_registered"
+        android:title="View Bikes"
         app:showAsAction="ifRoom|withText"/>
 
     <item

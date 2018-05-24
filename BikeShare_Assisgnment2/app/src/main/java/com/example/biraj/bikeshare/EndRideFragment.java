@@ -2,10 +2,12 @@ package com.example.biraj.bikeshare;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
@@ -20,9 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by biraj on 5/1/2018.
@@ -30,7 +35,7 @@ import java.util.Locale;
 
 public class EndRideFragment extends Fragment {
     private Button btnEndRide,btnGetLocation;
-    private TextView bikeName,endLocation;
+    private TextView bikeName,startLocation,startDateTime,endLocation,endDatetime,Price;
     private Ride mRide;
     Context mContext;
     Spinner spinner;
@@ -41,40 +46,41 @@ public class EndRideFragment extends Fragment {
     // GPSTracker class
     GPSTracker gps;
     double latitude,longitude;
+    String UUID="";
     Ride ride;
-
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            UUID= bundle.getString("UUID", ""); // Key, default value
+        }
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         View v = inflater.inflate(R.layout.fragment_end_ride, container, false);
         geocoder = new Geocoder(getActivity(), Locale.getDefault());
+
         bikeName=(EditText) v.findViewById(R.id.bike_name);
-        endLocation=(EditText) v.findViewById(R.id.end_ride);
+        startLocation=(EditText) v.findViewById(R.id.start_location);
+        startDateTime=(EditText) v.findViewById(R.id.start_datetime);
+        endLocation=(EditText) v.findViewById(R.id.end_location);
+        endDatetime=(EditText) v.findViewById(R.id.end_datetime);
+        Price=(EditText) v.findViewById(R.id.price);
+
         btnEndRide=(Button)  v.findViewById(R.id.btn_end_ride);
         btnGetLocation=(Button) v.findViewById(R.id.btn_end_location);
+
         mContext=getActivity();
-        ride=new Ride();
 
-        RegisterLab registerLab = RegisterLab.get(getActivity());
-        List<Register> registers= registerLab.getRegisters();
+        RideLab rideLab= RideLab.get(getActivity());
+        ride= rideLab.getRide(java.util.UUID.fromString(UUID));
 
-        List<String> names=new ArrayList<>();
-        for(Register r:registers){
-            names.add(r.getName());
-        }
-        spinner = (Spinner) v.findViewById(R.id.bikeIdSpinnerEndRide);
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item, names);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
+        bikeName.setText(ride.getName());
+        startLocation.setText(ride.getStartLocation());
+        startDateTime.setText(ride.getStartDateTime());
+        endDatetime.setText(getDateTime());
 
         btnGetLocation.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -121,17 +127,21 @@ public class EndRideFragment extends Fragment {
         btnEndRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String text = spinner.getSelectedItem().toString();
-                ride.setName(text);
-                ride.setStartLocation(endLocation.getText().toString());
-                RideLab.get(getActivity()).addRide(ride);
-                //getActivity().recreate();
-                Toast.makeText(getActivity().getApplicationContext(),"ride started successfully",Toast.LENGTH_LONG).show();
+                ride.setEndDateTime(endDatetime.getText().toString());
+                ride.setEndLocation(endLocation.getText().toString());
+                ride.setPrice(Price.getText().toString());
+                RideLab.get(getActivity()).updateRide(ride);
+                CheckFragment nextFrag= new CheckFragment();
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, nextFrag)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
         return v;
     }
+    @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
@@ -160,5 +170,10 @@ public class EndRideFragment extends Fragment {
                 return;
             }
         }
+    }private static String getDateTime() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat(
+                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        Date date = new Date();
+        return dateFormat.format(date);
     }
 }

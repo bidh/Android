@@ -32,8 +32,8 @@ public class BikeShareActivity extends AppCompatActivity {
             case R.id.new_ride:
                 setUpFragment(new StartRideFragment(), R.id.fragment_container);
                 return true;
-            case R.id.end_ride:
-                setUpFragment(new EndRideFragment(), R.id.fragment_container);
+            case R.id.ViewRegisteredBike:
+                setUpFragment(new ShowRegisterFragment(), R.id.fragment_container);
                 return true;
             case R.id.check_ride:
                 setUpFragment(new CheckFragment(), R.id.fragment_container);
