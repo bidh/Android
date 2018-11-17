@@ -32,8 +32,9 @@ public class RegisterCursorWrapper extends CursorWrapper{
         register.setType(type);
         register.setDate(date);
         register.setPrice(price);
-        register.setImage(image);
-
+        if(image!=null){
+            register.setImage(image);
+        }
         return register;
     }
 }

@@ -86,7 +86,9 @@ public class ShowRegisterFragment extends Fragment {
             mBikeNameView.setText("Bike name:" + mRegister.getName());
             mBikeTypeView.setText("Bike type:" + mRegister.getType());
             mBikePriceView.setText("Bike price per hour: "+mRegister.getPrice()+ " kr");
-            mImageView.setImageBitmap(RegisterLab.ConvertByteArrayToBitmap(mRegister.getImage()));
+            if(mRegister.getImage()!=null){
+                mImageView.setImageBitmap(RegisterLab.ConvertByteArrayToBitmap(mRegister.getImage()));
+            }
         }
         @Override
         public void onClick(View view) {

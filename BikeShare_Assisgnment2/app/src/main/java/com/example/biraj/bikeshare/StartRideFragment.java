@@ -81,9 +81,9 @@ public class StartRideFragment extends Fragment {
 
         btnGetLocation.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                if (ContextCompat.checkSelfPermission(mContext,
+                if (ContextCompat.checkSelfPermission(getContext(),
                         Manifest.permission.ACCESS_FINE_LOCATION)!= PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(mContext,
+                        && ActivityCompat.checkSelfPermission(getContext(),
                         Manifest.permission.ACCESS_COARSE_LOCATION)
                         != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(getActivity(),
@@ -123,6 +123,15 @@ public class StartRideFragment extends Fragment {
         btnStartRide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(spinner.getSelectedItem()==null){
+                    Toast.makeText(getActivity().getApplicationContext(),"No bikes available",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if(startLocation.getText().toString().length()==0){
+                    startLocation.setError("location cannot be empty");
+                    return;
+                }
                 String sLocation=startLocation.getText().toString();
                 String text = spinner.getSelectedItem().toString();
                 ride.setId(UUID.randomUUID());
@@ -140,14 +149,10 @@ public class StartRideFragment extends Fragment {
     }
     public void onRequestPermissionsResult(int requestCode, String[] permissions,int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
         switch (requestCode) {
             case 1: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0&& grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                    // permission was granted, yay! Do the
-                    // contacts-related task you need to do.
                     gps = new GPSTracker(mContext, getActivity());
                     // Check if GPS enabled
                     if (gps.canGetLocation()) {

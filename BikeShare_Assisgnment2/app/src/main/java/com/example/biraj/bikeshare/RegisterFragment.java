@@ -75,10 +75,21 @@ public class RegisterFragment extends Fragment {
                 String bikeName=txtBikeName.getText().toString();
                 String bikeType=txtBikeType.getText().toString();
 
+                if(txtBikeName.getText().toString().length()==0){
+                    txtBikeName.setError("Bike name is required");
+                    return;
+                }
+                if(txtBikeType.getText().toString().length()==0){
+                    txtBikeType.setError("Bike type is required");
+                    return;
+                }
+
                 register.setName(bikeName);
                 register.setType(bikeType);
                 register.setPrice(txtBikePrice.getText().toString());
-                register.setImage(image);
+                if(image!=null){
+                    register.setImage(image);
+                }
                 RegisterLab.get(getActivity()).addRegister(register);
                 getActivity().recreate();
             }
